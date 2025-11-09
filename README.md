@@ -2,9 +2,9 @@
 
 > This solution is available as a CDK package and can be deployed to your AWS account by running just a few simple scripts.
 
-This demo showcases [Amazon Nova’s multimodal embedding](https://aws.amazon.com/blogs/aws/amazon-nova-multimodal-embeddings-now-available-in-amazon-bedrock/) capabilities in [Amazon Bedrock](https://aws.amazon.com/bedrock/), enabling unified search across text, images, video, and audio. 
+This application serves as a demo to showcase [**Amazon Nova’s multimodal embedding**](https://aws.amazon.com/blogs/aws/amazon-nova-multimodal-embeddings-now-available-in-amazon-bedrock/) capabilities in [**Amazon Bedrock**](https://aws.amazon.com/bedrock/), enabling unified search across text, images, video, and audio. It can be used as a quick start to explore Nova MME features, deliver demonstrations, or serve as a reference architecture for your own applications.
 
-The demo includes an interactive web interface where you can upload multimedia files, perform cross-modal searches, and experience how embeddings power intelligent content discovery across different modalities.
+The application includes an interactive web interface where you can upload multimedia files, perform cross-modal searches, and experience how embeddings power intelligent content discovery across different modalities.
 
 ## Table of Contents
 
