@@ -1,0 +1,173 @@
+{
+  "images": [
+    {
+      "name": "boots01.jpeg",
+      "url": "/temp/boots01.jpeg",
+      "keywords": [
+        "boots",
+        "footwear",
+        "leather boots",
+        "work boots",
+        "brown boots",
+        "hiking boots",
+        "outdoor gear",
+        "rugged footwear",
+        "ankle boots",
+        "casual boots"
+      ]
+    },
+    {
+      "name": "boots02.jpeg",
+      "url": "/temp/boots02.jpeg",
+      "keywords": [
+        "boots",
+        "black boots",
+        "combat boots",
+        "military style",
+        "tactical boots",
+        "lace-up boots",
+        "heavy duty boots",
+        "protective footwear",
+        "steel toe boots",
+        "work safety"
+      ]
+    },
+    {
+      "name": "boots03.jpeg",
+      "url": "/temp/boots03.jpeg",
+      "keywords": [
+        "boots",
+        "winter boots",
+        "insulated boots",
+        "waterproof boots",
+        "snow boots",
+        "cold weather gear",
+        "thermal boots",
+        "outdoor boots",
+        "weather resistant",
+        "hiking footwear"
+      ]
+    },
+    {
+      "name": "boots04.jpeg",
+      "url": "/temp/boots04.jpeg",
+      "keywords": [
+        "boots",
+        "dress boots",
+        "formal boots",
+        "chelsea boots",
+        "business casual",
+        "leather footwear",
+        "professional boots",
+        "office wear",
+        "smart casual",
+        "elegant boots"
+      ]
+    },
+    {
+      "name": "boots05.jpeg",
+      "url": "/temp/boots05.jpeg",
+      "keywords": [
+        "boots",
+        "cowboy boots",
+        "western boots",
+        "rodeo boots",
+        "country style",
+        "ranch wear",
+        "traditional boots",
+        "pointed toe boots",
+        "western fashion",
+        "equestrian boots"
+      ]
+    },
+    {
+      "name": "sneaker01.jpeg",
+      "url": "/temp/sneaker01.jpeg",
+      "keywords": [
+        "sneakers",
+        "athletic shoes",
+        "running shoes",
+        "sports footwear",
+        "casual shoes",
+        "fitness shoes",
+        "training shoes",
+        "comfortable shoes",
+        "everyday wear",
+        "active lifestyle"
+      ]
+    },
+    {
+      "name": "sneaker02.jpeg",
+      "url": "/temp/sneaker02.jpeg",
+      "keywords": [
+        "sneakers",
+        "basketball shoes",
+        "high-top sneakers",
+        "court shoes",
+        "performance shoes",
+        "athletic footwear",
+        "sport shoes",
+        "gym shoes",
+        "recreational shoes",
+        "street style"
+      ]
+    },
+    {
+      "name": "sneaker03.jpeg",
+      "url": "/temp/sneaker03.jpeg",
+      "keywords": [
+        "sneakers",
+        "white sneakers",
+        "clean sneakers",
+        "minimalist shoes",
+        "fashion sneakers",
+        "lifestyle shoes",
+        "trendy footwear",
+        "modern sneakers",
+        "versatile shoes",
+        "contemporary style"
+      ]
+    },
+    {
+      "name": "sneaker04.jpeg",
+      "url": "/temp/sneaker04.jpeg",
+      "keywords": [
+        "sneakers",
+        "colorful sneakers",
+        "vibrant shoes",
+        "designer sneakers",
+        "fashion forward",
+        "statement shoes",
+        "bold footwear",
+        "artistic sneakers",
+        "unique design",
+        "eye-catching shoes"
+      ]
+    },
+    {
+      "name": "sneaker05.jpeg",
+      "url": "/temp/sneaker05.jpeg",
+      "keywords": [
+        "sneakers",
+        "retro sneakers",
+        "vintage style",
+        "classic sneakers",
+        "old school shoes",
+        "nostalgic footwear",
+        "heritage sneakers",
+        "timeless design",
+        "throwback shoes",
+        "iconic sneakers"
+      ]
+    }
+  ],
+  "metadata": {
+    "total_images": 10,
+    "categories": [
+      "boots",
+      "sneakers"
+    ],
+    "created_date": "2025-01-21",
+    "description": "Collection of footwear images including various types of boots and sneakers for search and display purposes"
+  }
+}

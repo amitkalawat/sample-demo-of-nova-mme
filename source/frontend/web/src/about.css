@@ -1,0 +1,171 @@
+.about-page {
+  padding: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.about-page .architecture-diagram,
+.about-page .embedding-diagram {
+  text-align: center;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e1e4e8;
+}
+
+.about-page .architecture-diagram img,
+.about-page .embedding-diagram img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-page ul {
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+.about-page ul li {
+  margin-bottom: 8px;
+}
+
+.about-page ul li strong {
+  color: #232f3e;
+  font-weight: 600;
+}
+
+.about-page .awsui-box[data-variant="h2"] {
+  color: #232f3e;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.about-page .awsui-box[data-variant="h3"] {
+  color: #16191f;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  margin-top: 20px;
+}
+
+.about-page .awsui-box[data-variant="h4"] {
+  color: #16191f;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  margin-top: 16px;
+}
+
+.about-page .awsui-column-layout > div {
+  padding: 0 10px;
+}
+
+.about-page .awsui-badge {
+  margin-right: 8px;
+  margin-bottom: 4px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .about-page {
+    padding: 10px;
+  }
+  
+  .about-page .architecture-diagram,
+  .about-page .embedding-diagram {
+    padding: 10px;
+  }
+  
+  .about-page .awsui-column-layout {
+    flex-direction: column;
+  }
+  
+  .about-page .awsui-column-layout > div {
+    padding: 10px 0;
+  }
+}
+
+/* Tab content styling */
+.about-page .awsui-tabs-content {
+  padding-top: 20px;
+}
+
+/* Feature badges styling */
+.about-page .feature-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.about-page .feature-badges .awsui-badge {
+  margin: 0;
+}
+
+/* Code and technical content */
+.about-page code {
+  background-color: #f1f3f4;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Monaco', 'Consolas', monospace;
+  font-size: 14px;
+}
+
+/* Highlight boxes */
+.about-page .highlight-box {
+  background-color: #e8f4fd;
+  border-left: 4px solid #0073bb;
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.about-page .highlight-box.warning {
+  background-color: #fff8e1;
+  border-left-color: #ff9800;
+}
+
+.about-page .highlight-box.success {
+  background-color: #e8f5e8;
+  border-left-color: #4caf50;
+}
+
+/* Step indicators */
+.about-page .step-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: #0073bb;
+  color: white;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+/* Performance metrics styling */
+.about-page .performance-metric {
+  text-align: center;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.about-page .performance-metric .metric-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0073bb;
+  display: block;
+}
+
+.about-page .performance-metric .metric-label {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+}

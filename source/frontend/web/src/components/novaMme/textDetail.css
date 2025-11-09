@@ -1,0 +1,12 @@
+.novammetxtdetail .close {
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    display: block;
+    float: right;
+    font-weight: bold;
+    cursor: pointer;
+    border: solid 2px gray;
+    border-radius: 10px;
+    padding: 5px 5px 0px 5px;
+}

@@ -1,17 +1,132 @@
-## My Project
+# Amazon Nova Multimodal Embedding Demo
 
-TODO: Fill this README out!
+This demo showcases Amazon Nova's multimodal embedding capabilities in Amazon Bedrock, enabling unified search across text, images, video, and audio content. The application converts diverse media types into a shared vector space, allowing you to search for videos using text descriptions, find images with natural language queries, or discover audio clips through semantic similarity. The demo provides an interactive web interface where you can upload multimedia files, perform cross-modal searches, and explore how embeddings enable powerful content discovery across different modalities with a single unified model.
 
-Be sure to:
+## Architecture
 
-* Change the title in this README
-* Edit your repository description on GitHub
+Nova MME is built on a modern serverless architecture using AWS services for scalability, reliability, and performance. The system processes multimedia content through a pipeline that extracts embeddings and stores them in a vector database for efficient semantic search.
 
-## Security
+![System Architecture](./assets/nova-mme-architecture.png)
 
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+### Core Components
 
-## License
+- **Frontend:** React-based web application providing an intuitive interface for uploading media and performing searches
+- **API Gateway:** RESTful API endpoints for secure communication between frontend and backend services
+- **Lambda Functions:** Serverless compute layer handling media processing, embedding generation, and search operations
+- **S3 Storage:** Scalable object storage for media files (videos, images, audio, documents)
+- **S3 Vectors:** Serverless vector storage for efficient similarity search across embeddings
 
-This library is licensed under the MIT-0 License. See the LICENSE file.
+### AI/ML Services
 
+- **Amazon Nova:** Multi-modal embedding generation that converts text, images, video, and audio into a unified 1024-dimensional vector space
+- **Amazon Bedrock:** Foundation model access providing the underlying AI capabilities for embedding generation and semantic understanding
+
+### Multi-Modal Embedding Process
+
+![Multi-Modal Embedding Process](./assets/mme-diagram.png)
+
+The embedding process transforms different content types into a shared vector space, enabling cross-modal search capabilities where you can find videos using text queries, discover images through natural language, or locate audio clips based on semantic similarity.
+
+## Demo recording
+![nova-mme-demo](./assets/nova-mme-demo.gif)
+
+## Prerequisites
+
+- If you don't have the AWS account administrator access, ensure your [IAM](https://aws.amazon.com/iam/) role/user has permissions to create and manage the necessary resources and components for this solution.
+- In Amazon Bedrock, make sure you have access to the required models: 
+    - Nova multimodal embedding
+    - Nova Lite 1.0
+
+### Install environment dependencies and set up authentication
+
+<details><summary>
+:bulb: Skip if using CloudShell or AWS services that support bash commands from the same account (e.g., Cloud9). Required for self-managed environments like local desktops.
+</summary>
+
+- [ ] Install Node.js
+https://nodejs.org/en/download/
+
+- [ ] Install Python 3.9+
+https://www.python.org/downloads/
+
+- [ ] Install Git
+https://github.com/git-guides/install-git
+
+- [ ] Install Pip
+```sh
+python -m ensurepip --upgrade
+```
+
+- [ ] Install Python Virtual Environment
+```sh
+pip install virtualenv
+```
+
+
+- [ ] Setup the AWS CLI authentication
+```sh
+aws configure                                                                     
+ ```                      
+</details>
+
+![Open CloudShell](./assets/cloudshell.png)
+
+If your CloudShell instance has older dependency libraries like npm or pip, it may cause deployment errors. To resolve this, click 'Actions' and choose 'Delete AWS CloudShell Home Directory' to start a fresh instance.
+
+### Supported Regions
+The solution requires AWS AI and Generative AI services, including Amazon Bedrock, Amazon Rekognition and Amazon Transcribe, which are available in certain regions. Please choose one of the below AWS regions to deploy the CDK package.
+
+|||||
+---------- | ---------- | ---------- | ---------- |
+US | us-east-1 (N. Virginia) | ||
+
+## Deployment Steps
+1. Clone the source code from GitHub repo 
+
+```
+git clone https://github.com/aws-samples/sample-demo-of-nova-mme.git
+cd sample-demo-of-nova-mme
+```
+
+2. Set up environment varaibles 
+
+Set environment variables as input parameters for the CDK deployment package:
+
+CDK_INPUT_USER_EMAILS: Email address(es) for login to the web portal. They will receive temporary passwords.
+```
+export CDK_INPUT_USER_EMAILS=<EMAILS_SPLIT_BY_COMMA>
+```
+
+Update the values with your target AWS account ID and the region where you intend to deploy the demo application.
+```
+export CDK_DEFAULT_ACCOUNT=<YOUR_ACCOUNT_ID>
+export CDK_DEFAULT_REGION=<YOUR_TARGET_REGION> (e.x, us-east-1)
+```
+
+3. Run **deploy-cloudshell.sh** in CloudShell to deploy the application to your AWS account with the parameters defined in step 2.
+```
+cd deployment
+bash ./deploy-cloudshell.sh
+```
+
+## Deployment Validation
+
+Once the deployment completes, you can find the website URL in the bash console. You can also find it in the CloudFormation console by checking the output in stack **NovaMmeRootStack**.
+
+## Running the Guidance
+- If you provided one or more email addresses through the environment variable `CDK_INPUT_USER_EMAILS` during setup, an email containing a username and temporary password will be sent to those addresses as part of the deployment process. Users can use these credentials to sign in to the web portal.
+
+- If you instead specified a username using `CDK_INPUT_USER_NAME`, you can log in to the web portal using that username and the password displayed in the CloudFormation output. This method bypasses Cognito’s email notification and password reset flow, making it suitable for workshop scenarios.
+
+- If neither `CDK_INPUT_USER_EMAILS` nor `CDK_INPUT_USER_NAME` was set, you will need to manually create a user by navigating to the Cognito console and adding a user to the **nova-mme-user-pool**.
+
+## Cleanup
+
+When you’re finished experimenting with this solution, clean up your resources by running the command from CloudShell:
+
+```
+cdk destroy
+```
+
+These commands deletes resources deploying through the solution. 
+You can also go to the CloudFormation console, select the `NovaMmeRootStack` stack, and click the Delete button to remove all the resources.

@@ -1,0 +1,498 @@
+.mmevideosearch {
+    width: 100%;
+}
+
+.mmevideosearch .title {
+    font-size: large;
+    font-weight: bold;
+    padding: 0px 0px 0px 10px;
+}
+
+.mmevideosearch .noresult {
+    padding: 20px;
+    font-size: large;
+    color: gray;
+}
+
+.mmevideosearch .cleanup {
+    padding-top: 5px;
+}
+
+.mmevideosearch .thumb {
+    display: inline-block;
+    margin: 12px;
+    width: 31%;
+    vertical-align: top;
+    min-height: 240px;
+    cursor: pointer;
+}
+
+.mmevideosearch .thumb .image {
+    width: 100%;
+}
+
+.mmevideosearch .thumb video {
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.mmevideosearch .thumb video:hover {
+    border-radius: 30px;
+}
+
+.mmevideosearch .thumb .thumbnail {
+    display: block;
+    padding: 5px 0px 0px 0px;
+    max-width: 100%;
+    min-height: 150px;
+    max-height: 300px;
+    cursor: pointer;
+    border-radius: 20px;
+    padding-top: -50px;
+}
+
+.mmevideosearch .thumb .icon {
+    display: block;
+    padding: 5px 0px 0px 0px;
+    max-width: 100%;
+    padding: 5% 20% 5% 20%;
+    height: 250px;
+    cursor: pointer;
+    border-radius: 20px;
+    padding-top: -50px;
+}
+
+.mmevideosearch .thumb .thumbnail:hover {
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.mmevideosearch .thumb .video {
+    display: block;
+    padding: 0px;
+    width: 100%;
+    height: 150px;
+    background-color: gray;
+    cursor: pointer;
+}
+
+.mmevideosearch .thumb .title {
+    display: block;
+    width: 100%;
+    max-height: 70px;
+    padding: 10px 0px 0px 15px;
+    font-size: medium;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.mmevideosearch .thumb .status {
+    display: block;
+    font-size: small;
+    width: 200px;
+    padding: 5px 0px 0px 15px;
+}
+
+.mmevideosearch .thumb .action {
+    display: block;
+    float: right;
+    cursor: pointer;
+    margin: -40px 10px 0px 0px;
+    z-index: 999;
+}
+
+.mmevideosearch .thumb .timestamp {
+    font-size: x-small;
+    width: 60%;
+    color: gray;
+    padding: 5px 0px 0px 15px;
+}
+
+.mmevideosearch .thumb .duration {
+    float: right;
+    margin-right: 10px;
+}
+
+.mmevideosearch .thumb .distance {
+    display: block;
+    color: gray;
+    font-size: small;
+    padding-left: 10px;
+}
+
+.mmevideosearch .thumb .hide {
+    display: none;
+}
+
+.mmevideosearch .showmore {
+    display: block;
+    padding-left: 40%;
+    margin: 30px;
+}
+
+.mmevideosearch .searchinput {
+    display: inline-block;
+    width: 100%;
+    height: 120px;
+    border: solid 1px rgb(0, 74, 200);
+    border-radius: 30px;
+    margin: 20px 0px 30px 0px;
+    padding: 2px 10px 10px 10px;
+    box-shadow: 0px 0px 4px rgb(0, 74, 200);
+}
+
+.mmevideosearch .searchkwinput {
+    display: inline-block;
+    width: 100%;
+    height: 90px;
+    border: solid 1px rgb(0, 74, 200);
+    border-radius: 30px;
+    margin: 20px 0px 30px 0px;
+    padding: 2px 10px 10px 10px;
+    box-shadow: 0px 0px 4px rgb(0, 74, 200);
+}
+
+.mmevideosearch .searchkwinput .input-text,
+.mmevideosearch .searchkwinput .input-text:focus {
+    display: inline-block;
+    width: 90%;
+    height: 60px;
+    border: 0px;
+    outline: none;
+    vertical-align: top;
+    margin: 5px;
+}
+
+.mmevideosearch .searchkwinput .clean {
+    display: block;
+    width: 50px;
+    float: right;
+    padding-top: 20px;
+}
+
+.mmevideosearch .searchkwinput .search {
+    display: block;
+    width: 100px;
+    float: right;
+    margin-top: -20px;
+}
+
+.mmevideosearch .searchinput .search {
+    display: block;
+    float: right;
+    margin-top: 20px;
+}
+
+.mmevideosearch .searchinput .upload {
+    display: inline-flex;
+    margin: 20px 0px 10px 20px;
+}
+
+.mmevideosearch .searchinput .setting {
+    display: inline-block;
+    margin: 20px 0px 10px 20px;
+}
+
+.mmevideosearch .searchinput .input {
+    display: block;
+    height: 40px;
+    margin: 10px 0px 0px 15px;
+    vertical-align: top;
+}
+
+.mmevideosearch .searchinput .clear {
+    display: block;
+    float: right;
+    right: 0px;
+    font-size: x-large;
+    margin: -10px 60px 0px 0px;
+}
+
+.mmevideosearch .searchinput .input .previewupload {
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.mmevideosearch .searchinput .input .previewupload img {
+    max-width: 150px;
+    max-height: 50px;
+    border: solid 2px gray;
+    border-radius: 10px;
+}
+
+.mmevideosearch .searchinput .input .input-text,
+.mmevideosearch .searchinput .input .input-text:focus {
+    display: inline-block;
+    width: 90%;
+    height: 60px;
+    border: 0px;
+    outline: none;
+    vertical-align: top;
+    margin: 5px;
+}
+
+.mmevideosearch .searchinput .search-by-image {
+    display: inline-block;
+    border-radius: 10px;
+    border: 1px lightgray solid;
+    padding: 10px;
+    margin-top: 10px;
+    width: 550px;
+}
+
+.mmevideosearch .searchinput .search-by-text {
+    display: inline-block;
+    border-radius: 10px;
+    border: 1px lightgray solid;
+    padding: 10px;
+    margin-top: 10px;
+    width: 500px;
+}
+
+.mmevideosearch .searchinput .search-by-image .title,
+.mmevideosearch .searchinput .search-by-text .title {
+    font-size: medium;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.mmevideosearch .searchinput .search-by-text .desc,
+.mmevideosearch .searchinput .search-by-image .desc {
+    font-size: small;
+    padding: 10px;
+}
+
+.mmevideosearch .searchinput .search-by-image .input {
+    display: inline-block;
+    padding: 10px;
+    vertical-align: top;
+}
+
+.mmevideosearch .searchinput .search-by-image .image-container {
+    display: block;
+    float: right;
+}
+
+.mmevideosearch .searchinput .search-by-image .uploaded-image {
+    max-width: 250px;
+    max-height: 250px;
+    display: block;
+    margin-top: -70px;
+}
+
+.mmevideosearch .searchinput .search-by-image .image-container svg {
+    display: block;
+    float: right;
+    vertical-align: top;
+    margin-top: -100px;
+    cursor: pointer;
+}
+
+.mmevideosearch .searchinput .search-by-image .score-threshold,
+.mmevideosearch .searchinput .search-by-text .score-threshold {
+    width: 200px;
+    margin-left: 10px;
+}
+
+.mmevideosearch .empty {
+    font-size: large;
+    color: gray;
+    padding-top: 10px;
+}
+.videomdoal {
+    color: gray;
+}
+
+.videomdoal .videom {
+    width: 500px;
+}
+
+.videomdoal .timestamp {
+    font-size: large;
+}
+
+.videomdoal .desc {}
+
+.filedetail {
+    display: flex;
+    justify-content: center;
+    /* centers horizontally */
+    align-items: center;
+    /* centers vertically */
+}
+
+.filedetail .title {
+    font-weight: bold;
+    font-size: medium;
+    padding-bottom: 5px;
+}
+
+.filedetail img {
+    width: 100%;
+}
+
+.filedetailfooter .timestamp {
+    color: gray;
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+.filedetailfooter .id {
+    font-size: x-small;
+    color: silver;
+}
+
+.videosearchresultpreview {
+    display: flex;
+    justify-content: center;
+    /* centers horizontally */
+    align-items: center;
+    /* centers vertically */
+}
+
+.videosearchresultpreview img {
+    width: 100%;
+}
+
+/* S
+tyles for temp image keyword tags */
+.mmevideosearch .thumb .keywords {
+    padding: 8px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.mmevideosearch .thumb .keyword-tag {
+    background-color: #e1f5fe;
+    color: #0277bd;
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    border: 1px solid #b3e5fc;
+}
+
+.mmevideosearch .thumb .keyword-more {
+    color: #666;
+    font-size: 11px;
+    font-style: italic;
+    padding: 2px 4px;
+}
+
+/* Ensure temp images display properly */
+.mmevideosearch .thumb img.thumbnail {
+    object-fit: cover;
+    width: 100%;
+    height: 150px;
+}
+/* Enhance
+d image fitting styles for keywordSearch component */
+.mmevideosearch .thumb .thumbnail {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    transition: all 0.3s ease !important;
+}
+
+.mmevideosearch .thumb .thumbnail:hover {
+    transform: scale(1.02) !important;
+}
+
+/* Keyword display styles for keywordSearch */
+.mmevideosearch .thumb .keyword-display {
+    display: inline-block;
+    background-color: #e1f5fe;
+    color: #0277bd;
+    padding: 2px 6px;
+    margin: 2px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    border: 1px solid #b3e5fc;
+}
+
+/* Ensure proper thumb container sizing */
+.mmevideosearch .thumb {
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+/* Responsive image adjustments */
+@media (max-width: 768px) {
+    .mmevideosearch .thumb {
+        width: 48% !important;
+        margin: 8px !important;
+    }
+    
+    .mmevideosearch .thumb .thumbnail {
+        height: 120px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .mmevideosearch .thumb {
+        width: 100% !important;
+        margin: 5px 0 !important;
+    }
+    
+    .mmevideosearch .thumb .thumbnail {
+        height: 180px !important;
+    }
+}/* K
+eyword Labels Styling for keywordSearch */
+.mmevideosearch .thumb .keywords-container {
+    padding: 8px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+}
+
+.mmevideosearch .thumb .keyword-label {
+    display: inline-block !important;
+    background-color: #e3f2fd !important;
+    color: #1976d2 !important;
+    padding: 3px 8px !important;
+    margin: 2px !important;
+    border-radius: 12px !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    border: 1px solid #bbdefb !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+}
+
+.mmevideosearch .thumb .keyword-label:hover {
+    background-color: #bbdefb !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+.mmevideosearch .thumb .keyword-label:active {
+    transform: scale(0.95) !important;
+}
+
+.mmevideosearch .thumb .more-keywords-label {
+    display: inline-block !important;
+    background-color: #f5f5f5 !important;
+    color: #666 !important;
+    padding: 3px 8px !important;
+    margin: 2px !important;
+    border-radius: 12px !important;
+    font-size: 11px !important;
+    font-style: italic !important;
+    border: 1px solid #ddd !important;
+    cursor: help !important;
+}
+
+/* Remove old keyword-display styles */
+.mmevideosearch .thumb .keyword-display {
+    display: none !important;
+}
