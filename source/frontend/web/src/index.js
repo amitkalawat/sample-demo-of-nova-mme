@@ -42,10 +42,6 @@ Amplify.configure({
     ...existingConfig.API,
     REST: {
       ...existingConfig.API?.REST,
-      ExtrService: {
-        endpoint: `${process.env.REACT_APP_APIGATEWAY_BASE_URL_EXTR_SRV}v1`,
-        region: process.env.REACT_APP_COGNITO_REGION
-      },
       NovaService: {
         endpoint: `${process.env.REACT_APP_APIGATEWAY_BASE_URL_NOVA_SRV}v1`,
         region: process.env.REACT_APP_COGNITO_REGION

@@ -122,28 +122,20 @@ nag_suppressions = [
         },
         {
             'id': 'AwsSolutions-COG3',
-            'reason': 'False positive'
+            'reason': 'The Cognito user pool is used for an admin web UI authentication and does not allow public registration. Enabling AdvancedSecurityMode is optional and left to the users discretion.'
         },
         {
             'id': 'AwsSolutions-CFR7',
-            'reason': 'False positive'
+            'reason': 'False positive. The CloudFromation distribution has enbaled OAI access to the S3 origin.'
         },
         {
             'id': 'AwsSolutions-L1',
-            'reason': 'False positive'
+            'reason': 'False positive. There is no Lambda deployment in the analytics stack.'
         },
         {
             'id': 'AwsSolutions-CB4',
-            'reason': 'The target s3 bucket is for web hosting'
+            'reason': 'The target s3 bucket is for public web hosting which does not require encryption.'
         },
-        {
-            'id': 'AwsSolutions-SM1',
-            'reason': 'for testing only'
-        },
-        {
-            'id': 'AwsSolutions-SM3',
-            'reason': 'for testing only'
-        }
     ]
 
 NagSuppressions.add_stack_suppressions(
