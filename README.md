@@ -1,6 +1,11 @@
 # Amazon Nova Multimodal Embedding Demo
 
-This demo showcases Amazon Nova's multimodal embedding capabilities in Amazon Bedrock, enabling unified search across text, images, video, and audio content. The application converts diverse media types into a shared vector space, allowing you to search for videos using text descriptions, find images with natural language queries, or discover audio clips through semantic similarity. The demo provides an interactive web interface where you can upload multimedia files, perform cross-modal searches, and explore how embeddings enable powerful content discovery across different modalities with a single unified model.
+This CDK-based demo showcases [Amazon Nova’s multimodal embedding](https://aws.amazon.com/blogs/aws/amazon-nova-multimodal-embeddings-now-available-in-amazon-bedrock/) capabilities in [Amazon Bedrock](https://aws.amazon.com/bedrock/), enabling unified search across text, images, video, and audio. The solution converts diverse media types into a shared vector space, allowing users to search for videos using text descriptions, find images through natural language queries, or discover audio clips via semantic similarity.
+
+The demo includes an interactive web interface where you can upload multimedia files, perform cross-modal searches, and experience how embeddings power intelligent content discovery across different modalities — all built and deployed through an AWS CDK package for easy setup in your own AWS environment.
+
+## Demo recording
+![nova-mme-demo](./assets/nova-mme-demo.gif)
 
 ## Architecture
 
@@ -26,9 +31,6 @@ Nova MME is built on a modern serverless architecture using AWS services for sca
 ![Multi-Modal Embedding Process](./assets/mme-diagram.png)
 
 The embedding process transforms different content types into a shared vector space, enabling cross-modal search capabilities where you can find videos using text queries, discover images through natural language, or locate audio clips based on semantic similarity.
-
-## Demo recording
-![nova-mme-demo](./assets/nova-mme-demo.gif)
 
 ## Prerequisites
 
