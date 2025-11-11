@@ -6,6 +6,7 @@ from aws_cdk import (
     aws_cloudfront as _cloudfront,
     aws_cloudfront_origins as _origins,
     aws_lambda as _lambda,
+    aws_cloudformation as _cfn,
     RemovalPolicy,
     Duration,
     custom_resources as cr,
@@ -155,7 +156,7 @@ class FrontendStack(NestedStack):
         staging_bucket.grant_write(project.role)
 
         # Invoke codebuild project using a custom resource
-        cr.AwsCustomResource(
+        build_trigger = cr.AwsCustomResource(
             self,
             "TriggerBuild",
             on_create=cr.AwsSdkCall(
@@ -169,6 +170,35 @@ class FrontendStack(NestedStack):
                 resources=cr.AwsCustomResourcePolicy.ANY_RESOURCE
             ),
         )
+
+        # Add 5-minute delay after CodeBuild deployment
+        delay_provider = cr.Provider(
+            self,
+            "DelayProvider",
+            on_event_handler=_lambda.Function(
+                self,
+                "DelayFunction",
+                runtime=_lambda.Runtime.PYTHON_3_9,
+                handler="index.on_event",
+                code=_lambda.Code.from_inline("""
+import time
+
+def on_event(event, context):
+    if event['RequestType'] == 'Create':
+        time.sleep(300)  # 5 minutes delay
+    return {'PhysicalResourceId': 'DelayResource'}
+"""),
+                timeout=Duration.minutes(10)
+            )
+        )
+        
+        delay_resource = _cfn.CfnCustomResource(
+            self,
+            "DelayAfterBuild",
+            service_token=delay_provider.service_token
+        )
+        
+        delay_resource.node.add_dependency(build_trigger)
 
 
     def deploy_cloudfront(self):
