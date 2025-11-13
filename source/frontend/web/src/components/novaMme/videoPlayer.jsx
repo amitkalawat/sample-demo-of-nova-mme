@@ -57,7 +57,7 @@ class VideoPlayer extends Component {
   }
 
   render() {
-    const { src, controls = true, autoPlay = false, className = "video", muted = true } = this.props;
+    const { src, controls = true, autoPlay = false, className = "video", muted = true, poster } = this.props;
 
     return (
       <video
@@ -66,6 +66,8 @@ class VideoPlayer extends Component {
         autoPlay={autoPlay}
         className={className}
         muted={muted}
+        preload="metadata"
+        poster={poster}
       >
         <source src={src} type="video/mp4" />
         Your browser does not support the video tag.

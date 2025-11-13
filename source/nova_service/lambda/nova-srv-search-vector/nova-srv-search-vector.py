@@ -86,17 +86,23 @@ def lambda_handler(event, context):
     end_index = from_index + page_size if from_index + page_size < len(result) else len(result)
     result = result[from_index: end_index]
 
-    # Get S3 presigned URL
+    # Get file URL (CloudFront or S3 presigned URL)
+    cloudfront_domain = os.environ.get('CLOUDFRONT_DOMAIN', '')
     if include_video_url:
         for item in result:
             s3_bucket = item.get("S3Bucket")
             s3_key = item.get("S3Key")
             if s3_bucket and s3_key:
-                item["FileUrl"] = s3.generate_presigned_url(
-                        'get_object',
-                        Params={'Bucket': s3_bucket, 'Key': s3_key},
-                        ExpiresIn=S3_PRESIGNED_URL_EXPIRY_S
-                    )
+                if cloudfront_domain:
+                    # Use CloudFront URL for better performance
+                    item["FileUrl"] = f"https://{cloudfront_domain}/{s3_key}"
+                else:
+                    # Fall back to S3 presigned URL
+                    item["FileUrl"] = s3.generate_presigned_url(
+                            'get_object',
+                            Params={'Bucket': s3_bucket, 'Key': s3_key},
+                            ExpiresIn=S3_PRESIGNED_URL_EXPIRY_S
+                        )
 
     return {
         'statusCode': 200,

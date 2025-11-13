@@ -87,6 +87,16 @@ class ServicePostStack(NestedStack):
                         actions=["logs:CreateLogStream", "logs:PutLogEvents"],
                         resources=[f"arn:aws:logs:{self.region}:{self.account_id}:log-group:/aws/lambda/{LAMBDA_NAME_PREFIX}util-post-provision:*"]
                     ),
+                    _iam.PolicyStatement(
+                        effect=_iam.Effect.ALLOW,
+                        actions=["lambda:GetFunctionConfiguration", "lambda:UpdateFunctionConfiguration"],
+                        resources=[f"arn:aws:lambda:{self.region}:{self.account_id}:function:{LAMBDA_NAME_PREFIX}*"]
+                    ),
+                    _iam.PolicyStatement(
+                        effect=_iam.Effect.ALLOW,
+                        actions=["ssm:GetParameter"],
+                        resources=[f"arn:aws:ssm:{self.region}:{self.account_id}:parameter/nova-mme/*"]
+                    ),
                 ]
             )}
         )

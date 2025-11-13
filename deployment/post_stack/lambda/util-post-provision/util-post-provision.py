@@ -22,6 +22,8 @@ s3 = boto3.resource('s3')
 cloudfront = boto3.client('cloudfront')
 cognito = boto3.client('cognito-idp')
 sm = boto3.client("sagemaker")
+lambda_client = boto3.client('lambda')
+ssm = boto3.client('ssm')
 
 def on_event(event, context):
   print(event)
@@ -34,6 +36,9 @@ def on_event(event, context):
 def on_create(event):
   # Copy web build
   copy_s3_prefix_to_root(S3_BUCKET_NAME_STAGING, "build/", S3_BUCKET_NAME_WEB)
+
+  # Configure Lambda functions with CloudFront domain
+  configure_lambda_cloudfront()
 
   # Update Cognitio Invitation Email template
   try:
@@ -109,6 +114,48 @@ def on_complete(event):
 
 def is_complete(event):
   return { 'IsComplete': True }
+
+def configure_lambda_cloudfront():
+    """Configure Lambda functions with CloudFront domain for video delivery"""
+    try:
+        # Get CloudFront domain from SSM Parameter Store
+        cloudfront_domain = ssm.get_parameter(Name='/nova-mme/cloudfront-domain')['Parameter']['Value']
+        print(f"CloudFront Domain: {cloudfront_domain}")
+
+        # List of Lambda functions to update
+        lambda_functions = [
+            'nova-mme-nova-srv-search-vector',
+            'nova-mme-nova-srv-search-vector-rag',
+            'nova-mme-nova-srv-get-video-tasks'
+        ]
+
+        for function_name in lambda_functions:
+            try:
+                print(f"Updating {function_name} with CloudFront domain...")
+
+                # Get current environment variables
+                response = lambda_client.get_function_configuration(FunctionName=function_name)
+                current_env = response.get('Environment', {}).get('Variables', {})
+
+                # Add CloudFront domain
+                current_env['CLOUDFRONT_DOMAIN'] = cloudfront_domain
+
+                # Update Lambda function
+                lambda_client.update_function_configuration(
+                    FunctionName=function_name,
+                    Environment={'Variables': current_env}
+                )
+
+                print(f"✓ Updated {function_name}")
+                time.sleep(1)  # Avoid throttling
+
+            except Exception as ex:
+                print(f"Failed to update {function_name}: {ex}")
+
+        print("✓ All Lambda functions configured with CloudFront domain")
+
+    except Exception as ex:
+        print(f"Failed to configure CloudFront for Lambda functions: {ex}")
 
 def copy_s3_prefix_to_root(src_bucket_name, src_prefix, dest_bucket_name):
     src_bucket = s3.Bucket(src_bucket_name)

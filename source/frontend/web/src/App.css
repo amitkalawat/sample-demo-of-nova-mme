@@ -2,16 +2,22 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background: #212121;
+  color: #ececec;
 }
 
 .app {
-    height: 90vh; /* full viewport height */
+    height: 100vh;
+    background: #212121;
 }
 
 .app .topmenu {
-  background-color: white;
-  color: rgb(70, 70, 70);
+  background-color: #171717;
+  color: #ececec;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .app .topmenu .title {
@@ -28,13 +34,15 @@ body, html {
 }
 
 .app .sidemenu {
-  width: 150px;
-  height: 100%;
-  display: block;
-  float: left;
-  padding: 10px 30px 10px 10px;
-  margin: 0px 10px 0px 10px;
-  border-radius: 5px;
+  width: 260px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #171717;
+  padding: 12px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-y: auto;
 }
 
 .app .sidemenu .action {
@@ -55,26 +63,28 @@ body, html {
   margin: 20px 10px 10px 10px;
 }
 .app .sidemenu .item{
-  padding:10px;
-  padding:5px 15px 5px 15px;
-  margin-top: 5px;
+  padding: 12px 16px;
+  margin: 4px 0;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
 }
 
 .app .sidemenu .item:hover
 {
-  padding:5px 15px 5px 15px;
-  background-color: rgb(231, 231, 231);
-  border-radius: 10px;
-  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: white;
 }
 .app .sidemenu .itemselected {
-  padding:5px 15px 5px 15px;
-  background-color: #000000;
+  padding: 12px 16px;
+  background-color: rgba(255, 255, 255, 0.1);
   color: white;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 .app .sidemenu .itemselected:hover {
   cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.12);
 }
 
 .app .sidemenucollapsed {
@@ -96,7 +106,9 @@ body, html {
 
 .app .content {
   display: block;
-  padding: 5px 30px 30px 30px;
+  margin-left: 260px;
+  padding: 0;
   overflow-y: auto;
-  max-height: 100%;
+  height: 100vh;
+  background: #212121;
 }

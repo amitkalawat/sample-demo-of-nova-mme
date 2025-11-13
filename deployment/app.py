@@ -43,8 +43,8 @@ class RootStack(Stack):
         )
 
         # Nova service stack
-        nova_service_stack = NovaServiceStack(self, 
-            "NovaMMeServiceStack", 
+        nova_service_stack = NovaServiceStack(self,
+            "NovaMMeServiceStack",
             description="Deploy Nova backend services: DynamoDB, API Gateway, Lambda, etc.",
             timeout = Duration.hours(4),
             s3_bucket_name_mm = srv_pre_stack.s3_data_bucket_name,
@@ -54,8 +54,8 @@ class RootStack(Stack):
         nova_service_stack.node.add_dependency(srv_pre_stack)
 
         # Frontend stack
-        frontend_stack = FrontendStack(self, 
-            "NovaMmeFrontStack", 
+        frontend_stack = FrontendStack(self,
+            "NovaMmeFrontStack",
             description="Deploy frontend static website: S3, CloudFormation",
             api_gw_base_url_nova_srv = nova_service_stack.api_gw_base_url,
             cognito_user_pool_id = srv_pre_stack.cognito_user_pool_id,

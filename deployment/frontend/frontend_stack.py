@@ -7,6 +7,8 @@ from aws_cdk import (
     aws_cloudfront_origins as _origins,
     aws_lambda as _lambda,
     aws_cloudformation as _cfn,
+    aws_ssm as _ssm,
+    CfnOutput,
     RemovalPolicy,
     Duration,
     custom_resources as cr,
@@ -202,26 +204,59 @@ def on_event(event, context):
 
 
     def deploy_cloudfront(self):
-        cf_oai = _cloudfront.OriginAccessIdentity(self, 'CloudFrontOriginAccessIdentity')
- 
+        # Create Origin Access Identity for web bucket
+        cf_oai_web = _cloudfront.OriginAccessIdentity(self, 'CloudFrontOriginAccessIdentityWeb')
+
+        # Create Origin Access Identity for data bucket (videos/images)
+        cf_oai_data = _cloudfront.OriginAccessIdentity(self, 'CloudFrontOriginAccessIdentityData')
+
+        # Grant OAI access to web bucket
         self.web_bucket.add_to_resource_policy(_iam.PolicyStatement(
             actions=["s3:GetObject"],
             resources=[self.web_bucket.arn_for_objects('*')],
             principals=[_iam.CanonicalUserPrincipal(
-                cf_oai.cloud_front_origin_access_identity_s3_canonical_user_id
+                cf_oai_web.cloud_front_origin_access_identity_s3_canonical_user_id
+            )],
+        ))
+
+        # Grant OAI access to data bucket
+        data_bucket = _s3.Bucket.from_bucket_name(self, "DataBucketForCloudFront", bucket_name=self.s3_bucket_name_data)
+        data_bucket.add_to_resource_policy(_iam.PolicyStatement(
+            actions=["s3:GetObject"],
+            resources=[data_bucket.arn_for_objects('*')],
+            principals=[_iam.CanonicalUserPrincipal(
+                cf_oai_data.cloud_front_origin_access_identity_s3_canonical_user_id
             )],
         ))
 
         cf_dist = _cloudfront.CloudFrontWebDistribution(self, "nova-mme-web-cloudfront-dist",
             origin_configs=[
+                # Web bucket origin (default)
                 _cloudfront.SourceConfiguration(
                     s3_origin_source=_cloudfront.S3OriginConfig(
                         s3_bucket_source=self.web_bucket,
-                        origin_access_identity=cf_oai
+                        origin_access_identity=cf_oai_web
                     ),
                     behaviors=[_cloudfront.Behavior(
                         is_default_behavior=True,
                         viewer_protocol_policy=_cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+                    )]
+                ),
+                # Data bucket origin (for videos, images, audio)
+                _cloudfront.SourceConfiguration(
+                    s3_origin_source=_cloudfront.S3OriginConfig(
+                        s3_bucket_source=data_bucket,
+                        origin_access_identity=cf_oai_data
+                    ),
+                    behaviors=[_cloudfront.Behavior(
+                        path_pattern="tasks/*",
+                        viewer_protocol_policy=_cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+                        allowed_methods=_cloudfront.CloudFrontAllowedMethods.GET_HEAD_OPTIONS,
+                        cached_methods=_cloudfront.CloudFrontAllowedCachedMethods.GET_HEAD_OPTIONS,
+                        default_ttl=Duration.hours(24),
+                        max_ttl=Duration.hours(48),
+                        min_ttl=Duration.hours(1),
+                        compress=True,
                     )]
                 )
             ],
@@ -234,3 +269,21 @@ def on_event(event, context):
             http_version=_cloudfront.HttpVersion.HTTP2_AND_3,
         )
         self.output_url = cf_dist.distribution_domain_name
+        self.cloudfront_domain_name = cf_dist.distribution_domain_name
+
+        # Store CloudFront domain in SSM Parameter for Lambda functions to use
+        _ssm.StringParameter(
+            self,
+            "CloudFrontDomainParameter",
+            parameter_name="/nova-mme/cloudfront-domain",
+            string_value=cf_dist.distribution_domain_name,
+            description="CloudFront domain name for video delivery"
+        )
+
+        # Output CloudFront domain
+        CfnOutput(
+            self,
+            "CloudFrontDomainName",
+            value=cf_dist.distribution_domain_name,
+            description="CloudFront domain for video/media delivery"
+        )

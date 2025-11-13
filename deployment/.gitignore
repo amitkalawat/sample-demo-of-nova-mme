@@ -1,0 +1,51 @@
+# CDK build outputs
+cdk.out/
+*.swp
+.cdk.staging/
+cdk.context.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+
+# Node
+node_modules/
+package-lock.json
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# Secrets and credentials
+.env
+.env.*
+*.pem
+*.key
+*_rsa
+*.p12
+*.pfx
+credentials.json
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# AWS
+.aws/
+
+# Temporary files
+*.tmp
+*.bak
+*~

@@ -9,10 +9,11 @@ S3_PRESIGNED_URL_EXPIRY_S = int(os.environ.get("S3_PRESIGNED_URL_EXPIRY_S", 3600
 S3_BUCKET_DATA = os.environ.get("S3_BUCKET_DATA")
 DYNAMO_VIDEO_TASK_TABLE = os.environ.get("DYNAMO_VIDEO_TASK_TABLE")
 MODEL_ID_EMBED = os.environ.get("MODEL_ID_EMBED")
-MODEL_ID_LLM = os.environ.get("MODEL_ID_LLM") 
+MODEL_ID_LLM = os.environ.get("MODEL_ID_LLM")
 NOVA_S3_VECTOR_BUCKET = os.environ.get("NOVA_S3_VECTOR_BUCKET")
 NOVA_S3_VECTOR_INDEX = os.environ.get("NOVA_S3_VECTOR_INDEX")
 EMBEDDING_DIM = int(os.environ.get("EMBEDDING_DIM", 1024))
+CLOUDFRONT_DOMAIN = os.environ.get("CLOUDFRONT_DOMAIN", "")
 
 # ==== Clients ====
 s3 = boto3.client('s3')
@@ -128,11 +129,18 @@ def construct_citation(clip, task):
 
     startCharPos, endCharPos = None, None
     startSec, endSec, index = None, None, None
-    s3_url = s3.generate_presigned_url(
-                    'get_object',
-                    Params={'Bucket': s3_bucket, 'Key': s3_key},
-                    ExpiresIn=S3_PRESIGNED_URL_EXPIRY_S
-                )
+
+    # Generate file URL (CloudFront or S3 presigned URL)
+    if CLOUDFRONT_DOMAIN:
+        # Use CloudFront URL for better performance
+        s3_url = f"https://{CLOUDFRONT_DOMAIN}/{s3_key}"
+    else:
+        # Fall back to S3 presigned URL
+        s3_url = s3.generate_presigned_url(
+            'get_object',
+            Params={'Bucket': s3_bucket, 'Key': s3_key},
+            ExpiresIn=S3_PRESIGNED_URL_EXPIRY_S
+        )
     if modality == "text":
         response = s3.get_object(Bucket=s3_bucket, Key=s3_key)
         text_content = response["Body"].read().decode("utf-8")

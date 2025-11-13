@@ -70,23 +70,32 @@ def lambda_handler(event, context):
 
     result = result[from_index:end_index]
 
-    # Generate URL
+    # Generate URL (CloudFront or S3 presigned)
+    cloudfront_domain = os.environ.get('CLOUDFRONT_DOMAIN', '')
     for r in result:
         s3_bucket = r.get("S3Bucket")
         s3_key = r.get("S3Key")
         if s3_bucket and s3_key:
-            r["FileUrl"] = s3.generate_presigned_url(
-                    'get_object',
-                    Params={'Bucket': s3_bucket, 'Key': s3_key},
-                    ExpiresIn=S3_PRESIGNED_URL_EXPIRY_S
-                )
+            if cloudfront_domain:
+                # Use CloudFront URL for better performance
+                r["FileUrl"] = f"https://{cloudfront_domain}/{s3_key}"
+            else:
+                # Fall back to S3 presigned URL
+                r["FileUrl"] = s3.generate_presigned_url(
+                        'get_object',
+                        Params={'Bucket': s3_bucket, 'Key': s3_key},
+                        ExpiresIn=S3_PRESIGNED_URL_EXPIRY_S
+                    )
             del r["S3Bucket"]
             del r["S3Key"]
-        
+
         s3_bucket_thumbnail = r.get("S3BucketThumbnail")
         s3_key_thumbnail = r.get("S3KeyThumbnail")
         if s3_bucket_thumbnail and s3_key_thumbnail:
-            r["ThumbnailUrl"] = s3.generate_presigned_url(
+            if cloudfront_domain:
+                r["ThumbnailUrl"] = f"https://{cloudfront_domain}/{s3_key_thumbnail}"
+            else:
+                r["ThumbnailUrl"] = s3.generate_presigned_url(
                     'get_object',
                     Params={'Bucket': s3_bucket_thumbnail, 'Key': s3_key_thumbnail},
                     ExpiresIn=S3_PRESIGNED_URL_EXPIRY_S

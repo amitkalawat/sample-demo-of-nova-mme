@@ -6,6 +6,7 @@ import DefaultThumbnail from '../../static/default_thumbnail.png';
 import { getCurrentUser } from 'aws-amplify/auth';
 import VideoUpload from './videoUpload';
 import VideoPlayer from './videoPlayer';
+import LazyVideoPlayer from './lazyVideoPlayer';
 import AudioPlayer from './audioPlayer';
 import { DecimalToTimestamp, clusterDataByDistance, FormatSeconds } from "../../resources/utility"
 import BroomIcon from "../../static/broom_button_icon.svg"
@@ -402,7 +403,7 @@ class VideoSearch extends React.Component {
                     <div>
                         {this.state.embedSearchItems && this.state.embedSearchItems.map((l, i) => {
                             return <div className="thumb" key={l.TaskId} onClick={({ detail }) => { this.handleSearchFileClick(l); }}>
-                                {l.Modality === "video" && <VideoPlayer key={`${l.TaskId}_${l.StartSec}`} src={l.FileUrl} startTime={l.StartSec} controls={false} />}
+                                {l.Modality === "video" && <LazyVideoPlayer key={`${l.TaskId}_${l.StartSec}`} src={l.FileUrl} startTime={l.StartSec} controls={false} />}
                                 {l.Modality === "image" && <img className='thumbnail' key={`img_${l.TaskId}`} src={l.FileUrl} />}
                                 {l.Modality === "text" && <img className='icon' src={TextIcon} key={`txt_${l.TaskId}`} />}
                                 {l.Modality === "audio" && <img className='icon' src={AudioIcon} key={`audio_${l.TaskId}`} />}
