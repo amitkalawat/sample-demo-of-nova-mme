@@ -60,7 +60,7 @@ class App extends Component {
       <div className="app">
         {displayTopMenu && (
           <div className="topmenu">
-            <div className="title">Amazon Nova Multi-Modal Embedding Demo</div>
+            <div className="title">Demo</div>
             <div className="user" title={user.email}>
               <Icon name="user-profile-active"></Icon>&nbsp;&nbsp;
               {user.username}
